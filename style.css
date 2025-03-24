@@ -1,0 +1,130 @@
+:root {
+  --neon-cyan: #0ff;
+  --neon-pink: #f0f;
+  --bg-dark: #1a1a2e;
+  --bg-light: #f0f0f0;
+  --glass-dark: rgba(255, 255, 255, 0.05);
+  --glass-light: rgba(0, 0, 0, 0.05);
+}
+
+* {
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(45deg, #1a1a2e, #16213e);
+  font-family: 'Arial', sans-serif;
+  color: white;
+}
+
+body.light-mode {
+  background: linear-gradient(45deg, #f0f0f0, #ffffff);
+  color: #333;
+}
+
+.game-container {
+  background: var(--glass-dark);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+.light-mode .game-container {
+  background: var(--glass-light);
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 2rem 0;
+}
+
+.cell {
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid var(--neon-cyan);
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  position: relative;
+}
+
+.cell:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.cell.x {
+  color: var(--neon-cyan);
+  text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+.cell.o {
+  color: var(--neon-pink);
+  text-shadow: 0 0 10px var(--neon-pink);
+}
+
+.winning-cell {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+button {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: var(--neon-cyan);
+  color: var(--bg-dark);
+  font-weight: bold;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px var(--neon-cyan);
+}
+
+.scoreboard {
+  display: flex;
+  justify-content: space-around;
+  margin: 1rem 0;
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+
+@media (max-width: 600px) {
+  .cell {
+      width: 80px;
+      height: 80px;
+  }
+}
