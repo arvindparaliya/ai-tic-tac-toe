@@ -1,4 +1,4 @@
-🎮 AI-Tic-Tac-Toe - A Stunning Web Game
+<H1>🎮 AI-Tic-Tac-Toe - A Stunning Web Game </H1>
 
 A modern and visually appealing AI-Tic-Tac-Toe game built with HTML, CSS, and JavaScript. This game features a sleek UI, smooth animations, and an engaging gameplay experience.
 
