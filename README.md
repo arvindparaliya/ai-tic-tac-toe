@@ -6,12 +6,19 @@ A modern and visually appealing AI-Tic-Tac-Toe game built with HTML, CSS, and Ja
 ✨ Features
 
 ✅ Beautiful UI – Glassmorphism/Cyberpunk theme with smooth animations
+
 ✅ Responsive Design – Works seamlessly on mobile, tablet, and desktop
+
 ✅ Engaging Gameplay – Classic 3x3 Tic-Tac-Toe with smooth transitions
+
 ✅ Win Detection – Highlights winning moves dynamically
+
 ✅ Restart Game – Reset the board with cool animations
+
 ✅ Sound Effects – Interactive audio feedback for clicks and wins
+
 ✅ Two Game Modes – Play against a friend or challenge an AI
+
 ✅ Dark Mode & Light Mode – Switch themes for better visibility
 
 
