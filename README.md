@@ -14,13 +14,6 @@ A modern and visually appealing AI-Tic-Tac-Toe game built with HTML, CSS, and Ja
 ✅ Two Game Modes – Play against a friend or challenge an AI
 ✅ Dark Mode & Light Mode – Switch themes for better visibility
 
-🖥️ Demo
-
-🚀 Live Demo: Play Now
-
-📸 Screenshots
-
-<img src="screenshot1.png" width="600">  
 
 🔧 Tech Stack
 
