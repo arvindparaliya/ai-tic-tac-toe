@@ -26,7 +26,7 @@ JavaScript (ES6+) – Game logic and interactivity
 
 1️⃣ Clone the Repository 
 
-git clone https://github.com/arvindparaliya/ai-tic-tac-toe.git
+git clone https://github.com/arvindparaliya/ai-tic-tac-toe.git <br>
 cd ai-tic-tac-toe
 
 2️⃣ Open index.html in Your Browser 
@@ -35,8 +35,8 @@ Simply open the index.html file in your browser to start playing!
 
 <h4>🎯 How to Play</h4>
 
-1️⃣ Player X and Player O take turns clicking on the board.
-2️⃣ The first player to align three marks in a row, column, or diagonal wins!
+1️⃣ Player X and Player O take turns clicking on the board. <br>
+2️⃣ The first player to align three marks in a row, column, or diagonal wins! <br>
 3️⃣ Click the Restart button to play again.
 
 <h4>🤖 AI Mode </h4>
@@ -46,7 +46,7 @@ If AI mode is implemented, Player X can play against a smart AI opponent that ma
 <h4>📌 Upcoming Enhancements</h4>
 
 [1] Add multiplayer mode with WebSockets <br>
-[2] Improve AI with Minimax Algorithm<br>
+[2] Improve AI with Minimax Algorithm <br>
 [3] Leaderboard system to track high scores
 
 
