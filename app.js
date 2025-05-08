@@ -1,102 +1,90 @@
-const game = {
-    board: Array(9).fill(''),
-    currentPlayer: 'X',
-    gameMode: '2player',
-    scores: { X: 0, O: 0, draw: 0 },
-    isGameActive: true,
-    winningCombos: [
-        [0, 1, 2], [3, 4, 5], [6, 7, 8],
-        [0, 3, 6], [1, 4, 7], [2, 5, 8],
-        [0, 4, 8], [2, 4, 6]
-    ]
+let boxes = document.querySelectorAll(".box");
+let resetBtn = document.querySelector("#reset-btn");
+let newGameBtn = document.querySelector("#new-btn");
+let msgContainer = document.querySelector(".msg-container");
+let msg = document.querySelector("#msg");
+
+let turnO = true;
+let count = 0;
+
+const winPatterns = [
+    [0, 1, 2],
+    [0, 3, 6],
+    [0, 4, 8],
+    [1, 4, 7],
+    [2, 5, 8],
+    [2, 4, 6],
+    [3, 4, 5],
+    [6, 7, 8],
+];
+
+const resetGame = () => {
+    turnO = true;
+    count = 0;
+    enableBoxes();
+    msgContainer.classList.add("hide");
 };
 
-// DOM Elements
-const cells = document.querySelectorAll('.cell');
-const restartBtn = document.getElementById('restart');
-const modeToggle = document.getElementById('mode-toggle');
-const themeToggle = document.getElementById('theme-toggle');
-
-// Event Listeners
-cells.forEach(cell => cell.addEventListener('click', handleCellClick));
-restartBtn.addEventListener('click', restartGame);
-modeToggle.addEventListener('click', toggleGameMode);
-themeToggle.addEventListener('click', toggleTheme);
-
-function handleCellClick(e) {
-    const index = e.target.dataset.index;
-    
-    if (!game.isGameActive || game.board[index]) return;
-
-    game.board[index] = game.currentPlayer;
-    e.target.textContent = game.currentPlayer;
-    e.target.classList.add(game.currentPlayer.toLowerCase());
-    
-    if (checkWin()) {
-        updateScores(game.currentPlayer);
-        highlightWinningCombo();
-        game.isGameActive = false;
-    } else if (game.board.every(cell => cell)) {
-        updateScores('draw');
-        game.isGameActive = false;
-    } else {
-        game.currentPlayer = game.currentPlayer === 'X' ? 'O' : 'X';
-        if (game.gameMode === 'ai' && game.currentPlayer === 'O') {
-            setTimeout(makeAIMove, 500);
+boxes.forEach((box) => {
+    box.addEventListener("click", () => {
+        if (turnO) {
+            box.innerText = "O";
+            turnO = false;
         }
-    }
-}
+        else {
+            box.innerText = "X";
+            turnO = true;
+        }
+        box.disabled = true;
+        count++;
 
-function checkWin() {
-    return game.winningCombos.some(combo => {
-        if (combo.every(index => game.board[index] === game.currentPlayer)) {
-            game.winningCombo = combo;
-            return true;
+        let isWinner = checkWinner();
+
+        if (count === 9 && !isWinner) {
+            gameDraw();
         }
     });
-}
+});
 
-function makeAIMove() {
-    const emptyCells = game.board
-        .map((cell, index) => cell === '' ? index : null)
-        .filter(cell => cell !== null);
-    
-    const randomIndex = emptyCells[Math.floor(Math.random() * emptyCells.length)];
-    cells[randomIndex].click();
-}
+const gameDraw = () => {
+    msg.innerText = `Game was a Draw.`;
+    msgContainer.classList.remove("hide");
+    disableBoxes();
+};
 
-function highlightWinningCombo() {
-    game.winningCombo.forEach(index => {
-        cells[index].classList.add('winning-cell');
-    });
-}
-
-function updateScores(result) {
-    if (result === 'draw') {
-        game.scores.draw++;
-        document.getElementById('score-draw').textContent = game.scores.draw;
-    } else {
-        game.scores[result]++;
-        document.getElementById(`score-${result.toLowerCase()}`).textContent = game.scores[result];
+const disableBoxes = () => {
+    for (let box of boxes) {
+        box.disabled = true;
     }
-}
+};
 
-function restartGame() {
-    game.board = Array(9).fill('');
-    game.isGameActive = true;
-    game.currentPlayer = 'X';
-    cells.forEach(cell => {
-        cell.textContent = '';
-        cell.className = 'cell';
-    });
-}
+const enableBoxes = () => {
+    for (let box of boxes) {
+        box.disabled = false;
+        box.innerText = "";
+    }
+};
 
-function toggleGameMode() {
-    game.gameMode = game.gameMode === '2player' ? 'ai' : '2player';
-    modeToggle.textContent = game.gameMode === 'ai' ? 'Switch to 2 Player' : 'Switch to AI';
-    restartGame();
-}
+const showWinner = (winner) => {
+    msg.innerText = `Congratulations, Winner is ${winner}`;
+    msgContainer.classList.remove("hide");
+    disableBoxes();
+};
 
-function toggleTheme() {
-    document.body.classList.toggle('light-mode');
-}
+const checkWinner = () => {
+    for (let pattern of winPatterns) {
+        let pos1Val = boxes[pattern[0]].innerText;
+        let pos2Val = boxes[pattern[1]].innerText;
+        let pos3Val = boxes[pattern[2]].innerText;
+
+        if (pos1Val != "" && pos2Val != "" && pos3Val != "") {
+            if (pos1Val === pos2Val && pos2Val === pos3Val) {
+                showWinner(pos1Val);
+                return true;
+            }
+        }
+    }
+};
+
+newGameBtn.addEventListener("click", resetGame);
+resetBtn.addEventListener("click", resetGame);
