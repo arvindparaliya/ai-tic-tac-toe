@@ -30,5 +30,5 @@ No installation is needed.
 Just clone the repository or download the files and open `index.html` in any modern browser.
 
 ```bash
-git clone https://github.com/arvindparaliya/tictactao.git
-cd your-repo-name
+git clone https://github.com/arvindparaliya/tic-tac-toe.git
+cd tic-tac-toe
