@@ -29,6 +29,9 @@ No installation is needed.
 
 Just clone the repository or download the files and open `index.html` in any modern browser.
 
-```bash
+<pre>```bash
 git clone https://github.com/arvindparaliya/tic-tac-toe.git
-cd tic-tac-toe
+cd tic-tac-toe </pre>
+
+
+
